@@ -1,5 +1,6 @@
 package leetcode.ThreadRunnable;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import java.util.List;
  */
 public class Test {
 		public static void main(String[] args) throws InterruptedException {
+				BigInteger bigInteger = BigInteger.ONE;
+				bigInteger = bigInteger.nextProbablePrime();
 				Mylist mylist = new Mylist();
 				Myservice t1 = new Myservice(mylist);
 				Myservice t2 = new Myservice(mylist);

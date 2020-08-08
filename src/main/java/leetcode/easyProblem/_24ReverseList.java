@@ -5,17 +5,17 @@ package leetcode.easyProblem;
  */
 public class _24ReverseList {
     public static void main(String[] args) {
-        Link head = new Link(1);
-        Link next1 = new Link(2);
-        Link next2 = new Link(3);
-        Link next3 = new Link(4);
-        Link next4 = new Link(5);
+        LinkNode head = new LinkNode(1);
+        LinkNode next1 = new LinkNode(2);
+        LinkNode next2 = new LinkNode(3);
+        LinkNode next3 = new LinkNode(4);
+        LinkNode next4 = new LinkNode(5);
         head.next = next1;
         next1.next = next2;
         next2.next = next3;
         next3.next = next4;
         next4.next = null;
-        Link newhead = reverse(head);
+        LinkNode newhead = reverse(head);
         System.out.println(newhead.value);
         while (newhead!=null){
             System.out.println(newhead.value);
@@ -23,10 +23,10 @@ public class _24ReverseList {
         }
     }
 
-    public static Link reverse(Link head) {
-        Link newhead = null;
+    public static LinkNode reverse(LinkNode head) {
+        LinkNode newhead = null;
         while (head != null) {
-            Link tmp = head.next;
+            LinkNode tmp = head.next;
             head.next = newhead;
             newhead = head;
             head = tmp;
@@ -35,14 +35,14 @@ public class _24ReverseList {
     }
 }
 
-class Link {
+class LinkNode {
     public int value;
-    public Link next;
+    public LinkNode next;
 
-    private Link() {
+    private LinkNode() {
     }
 
-    public Link(int value) {
+    public LinkNode(int value) {
         this.value = value;
     }
 

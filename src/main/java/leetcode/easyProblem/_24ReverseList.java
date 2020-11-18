@@ -33,6 +33,14 @@ public class _24ReverseList {
         }
         return newhead;
     }
+
+    /**
+    * @Description: 利用递归的方法翻转链表
+    * @Param: [head]
+    */
+    private static LinkNode reverseLinkWithRecur(LinkNode head){
+        return head;
+    }
 }
 
 class LinkNode {

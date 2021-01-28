@@ -20,27 +20,5 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>YouDao</id>
-            <url>http://nexus.corp.youdao.com/nexus/content/repositories/thirdparty</url>
-            <!--<url>http://nexus.corp.youdao.com/nexus/content/repositories/public/</url>-->
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.youdao.fanyi</groupId>
-            <artifactId>sentence-splitter</artifactId>
-            <version>1.0.2-snapshot</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor -->
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.11</artifactId>
-            <version>2.4.17</version>
-        </dependency>
-    </dependencies>
-
 
 </project>

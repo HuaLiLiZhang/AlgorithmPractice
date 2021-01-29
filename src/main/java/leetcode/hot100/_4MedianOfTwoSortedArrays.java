@@ -57,8 +57,10 @@ package leetcode.hot100;
 public class _4MedianOfTwoSortedArrays {
     public static void main(String[] args) {
         Solution solution = new _4MedianOfTwoSortedArrays().new Solution();
-        int[] nums1 = {0};
-        int[] nums2 = {};
+        /*int[] nums1 = {6,7};
+        int[] nums2 = {1,2,3,4,8};*/
+        int[] nums1 = {4,5,6};
+        int[] nums2 = {1,2,3,3,3,3,3,8};
         System.out.println(solution.findMedianSortedArrays(nums1, nums2));
     }
 
@@ -108,16 +110,14 @@ public class _4MedianOfTwoSortedArrays {
             int left = 0;
             int right = m;
             while (left < right) {
-                int i = left + (right - left + 1) / 2; //i进行二分查找即可
+                int i = left + (right - left) / 2; //i进行二分查找即可
                 int j = totalLeft - i;
                 if (nums1[i - 1] > nums2[j]) {
                     //下一轮搜索区间[left , i-1]
                     right = i - 1;
                 } else {
-                    //下一轮搜索区间[i , right]
-                    //在[left(i), right], 会进入是循环，
-                    // 所有要在i赋值的时候加1,不会执行到i=0的下标， 所以i-1这个不会越界
-                    left = i;
+                    //下一轮搜索区间[i+1 , right]
+                    left = i + 1;
                 }
             }
             int i = left;

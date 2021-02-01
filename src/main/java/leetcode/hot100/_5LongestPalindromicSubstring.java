@@ -106,7 +106,7 @@ public class _5LongestPalindromicSubstring {
                     if (s.charAt(i) != s.charAt(j)) {
                         dp[i][j] = false;
                     } else {
-                        if (j - 1 + 1 >= 4) {
+                        if (j - i + 1 >= 4) {
                             dp[i][j] = dp[i + 1][j - 1];
                         } else {
                             dp[i][j] = true;

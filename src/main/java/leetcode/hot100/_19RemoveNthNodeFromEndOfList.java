@@ -1,4 +1,4 @@
-package com.zhanghuali.leetcode.editor.cn;
+package leetcode.hot100;
 
 //给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。 
 //
@@ -44,6 +44,18 @@ package com.zhanghuali.leetcode.editor.cn;
 public class _19RemoveNthNodeFromEndOfList {
     public static void main(String[] args) {
         Solution solution = new _19RemoveNthNodeFromEndOfList().new Solution();
+        ListNode head1 = new ListNode(1);
+        ListNode res1 = solution.removeNthFromEnd(head1, 1);
+        ListNode head2 = new ListNode(1);
+        head2.next = new ListNode(2);
+        ListNode res2 = solution.removeNthFromEnd(head2, 1);
+        ListNode head3 = new ListNode(1);
+        head3.next = new ListNode(2);
+        head3.next.next = new ListNode(3);
+        head3.next.next.next = new ListNode(4);
+        head3.next.next.next.next = new ListNode(5);
+        ListNode res3 = solution.removeNthFromEnd(head3, 2);
+        System.out.println();
     }
     /**
 

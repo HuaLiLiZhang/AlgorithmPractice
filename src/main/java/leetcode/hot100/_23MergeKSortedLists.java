@@ -81,9 +81,9 @@ public class _23MergeKSortedLists {
          */
         class Status implements Comparable<Status> {
             int val;
-            com.zhanghuali.leetcode.editor.cn.ListNode ptr;
+            ListNode ptr;
 
-            Status(int val, com.zhanghuali.leetcode.editor.cn.ListNode ptr) {
+            Status(int val, ListNode ptr) {
                 this.val = val;
                 this.ptr = ptr;
             }
@@ -96,14 +96,14 @@ public class _23MergeKSortedLists {
 
         PriorityQueue<Status> queue = new PriorityQueue<Status>();
 
-        public com.zhanghuali.leetcode.editor.cn.ListNode mergeKLists(com.zhanghuali.leetcode.editor.cn.ListNode[] lists) {
-            for (com.zhanghuali.leetcode.editor.cn.ListNode node : lists) {
+        public ListNode mergeKLists(ListNode[] lists) {
+            for (ListNode node : lists) {
                 if (node != null) {
                     queue.offer(new Status(node.val, node));
                 }
             }
-            com.zhanghuali.leetcode.editor.cn.ListNode head = new com.zhanghuali.leetcode.editor.cn.ListNode(0);
-            com.zhanghuali.leetcode.editor.cn.ListNode tail = head;
+            ListNode head = new ListNode(0);
+            ListNode tail = head;
             while (!queue.isEmpty()) {
                 Status f = queue.poll();
                 tail.next = f.ptr;
@@ -125,11 +125,11 @@ public class _23MergeKSortedLists {
          * 空间复杂度：O(logk)
          * [lists]
          */
-        public com.zhanghuali.leetcode.editor.cn.ListNode mergeKLists2(com.zhanghuali.leetcode.editor.cn.ListNode[] lists) {
+        public ListNode mergeKLists2(ListNode[] lists) {
             return merge(lists, 0, lists.length - 1);
         }
 
-        private com.zhanghuali.leetcode.editor.cn.ListNode merge(com.zhanghuali.leetcode.editor.cn.ListNode[] lists, int left, int right) {
+        private ListNode merge(ListNode[] lists, int left, int right) {
             if (left == right) {
                 return lists[left];
             } else if (left > right) {
@@ -147,15 +147,15 @@ public class _23MergeKSortedLists {
          * 空间复杂度：没有用到与 k 和 n 规模相关的辅助空间，故渐进空间复杂度为 O(1)
          * @Param: [lists]
          */
-        public com.zhanghuali.leetcode.editor.cn.ListNode mergeKLists1(com.zhanghuali.leetcode.editor.cn.ListNode[] lists) {
+        public ListNode mergeKLists1(ListNode[] lists) {
             if (lists == null || lists.length <= 0) {
                 return null;
             }
             if (lists.length == 1) {
                 return lists[0];
             }
-            com.zhanghuali.leetcode.editor.cn.ListNode dummy = new com.zhanghuali.leetcode.editor.cn.ListNode(-10 ^ 4);
-            com.zhanghuali.leetcode.editor.cn.ListNode newHead = dummy;
+            ListNode dummy = new ListNode(-10 ^ 4);
+            ListNode newHead = dummy;
             int before = 0;
             while (before < lists.length) {
                 newHead = mergeTwoLists(newHead, lists[before]);
@@ -165,15 +165,15 @@ public class _23MergeKSortedLists {
         }
 
         // 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
-        public com.zhanghuali.leetcode.editor.cn.ListNode mergeTwoLists(com.zhanghuali.leetcode.editor.cn.ListNode l1, com.zhanghuali.leetcode.editor.cn.ListNode l2) {
-            com.zhanghuali.leetcode.editor.cn.ListNode dummy = new com.zhanghuali.leetcode.editor.cn.ListNode(-10 ^ 4);
-            com.zhanghuali.leetcode.editor.cn.ListNode head = dummy;
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            ListNode dummy = new ListNode(-10 ^ 4);
+            ListNode head = dummy;
             while (l1 != null && l2 != null) {
                 if (l1.val > l2.val) {
-                    head.next = new com.zhanghuali.leetcode.editor.cn.ListNode(l2.val);
+                    head.next = new ListNode(l2.val);
                     l2 = l2.next;
                 } else {
-                    head.next = new com.zhanghuali.leetcode.editor.cn.ListNode(l1.val);
+                    head.next = new ListNode(l1.val);
                     l1 = l1.next;
                 }
                 head = head.next;

@@ -1,4 +1,4 @@
-package leetcode.Job.Array;
+package leetcode.Job.Node;
 
 //删除链表中等于给定值 val 的所有节点。 
 //

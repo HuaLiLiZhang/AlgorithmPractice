@@ -71,7 +71,8 @@ public class _15ThreeSum {
                     break; // 第一个数大于 0，后面的数都比它大，肯定不成立了
                 }
                 if (i > 0 && nums[i] == nums[i - 1]) {
-                    continue; // 去掉重复情况
+                    continue; // 去掉重复情况，之所以跳过，是因为这个组合的第一个元素为此时的数值nums[i]的时候，
+                    // 前一个nums[i - 1]==nums[i]作为第一个元素的情况已经遍历过了
                 }
                 int target = -nums[i];
                 int left = i + 1, right = nums.length - 1;

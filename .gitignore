@@ -1,5 +1,5 @@
 .idea
-tartget
+tartget/*
 *.iml
 src/main/java/com/zhanghuali/leetcode/editor/cn/
 src/main/java/leetcode/Test/

@@ -97,12 +97,14 @@ public class _18FourSum {
                         if (nums[left] + nums[right] == remains) {
                             result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
                             //找到第三个元素，第三个元素不能重复
+                            //如果left后加1，那么left<right，left+1也顶多等于right, 不会越界
                             while (left < right && nums[left] == nums[left + 1]) {
                                 left++;
                             }
                             //没有重复的话，left继续往前加1
                             left++;
                             //找到第四个元素，第四个元素不能重复
+                            //如果right后减1，那么left<right，right-1也顶多等于left, 不会越界
                             while (left < right && nums[right] == nums[right - 1]) {
                                 right--;
                             }

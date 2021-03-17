@@ -1,6 +1,6 @@
 package leetcode.Job.TreeNodeItem;
 
-//给你二叉树的根节点 root ，返回它节点值的 前序 遍历。 
+//给定一个二叉树的根节点 root ，返回它的 中序 遍历。 
 //
 // 
 //
@@ -8,7 +8,7 @@ package leetcode.Job.TreeNodeItem;
 //
 // 
 //输入：root = [1,null,2,3]
-//输出：[1,2,3]
+//输出：[1,3,2]
 // 
 //
 // 示例 2： 
@@ -29,7 +29,7 @@ package leetcode.Job.TreeNodeItem;
 //
 // 
 //输入：root = [1,2]
-//输出：[1,2]
+//输出：[2,1]
 // 
 //
 // 示例 5： 
@@ -50,18 +50,18 @@ package leetcode.Job.TreeNodeItem;
 //
 // 
 //
-// 进阶：递归算法很简单，你可以通过迭代算法完成吗？ 
-// Related Topics 栈 树 
-// 👍 537 👎 0
+// 进阶: 递归算法很简单，你可以通过迭代算法完成吗？ 
+// Related Topics 栈 树 哈希表 
+// 👍 883 👎 0
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class _144BinaryTreePreorderTraversal {
+public class _94BinaryTreeInorderTraversal {
     public static void main(String[] args) {
-        Solution solution = new _144BinaryTreePreorderTraversal().new Solution();
+        Solution solution = new _94BinaryTreeInorderTraversal().new Solution();
     }
     /**
 
@@ -84,38 +84,41 @@ public class _144BinaryTreePreorderTraversal {
      * }
      */
     class Solution {
-        public List<Integer> preorderTraversal(TreeNode root) {
+        public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> allVal = new ArrayList<>();
             if (root == null) {
                 return allVal;
             }
-            getPreOrder(root, allVal);
+            getInOrder(root, allVal);
             return allVal;
         }
 
-        private void getPreOrder(TreeNode root, List<Integer> allVal) {
+        private void getInOrder(TreeNode root, List<Integer> allVal) {
             Stack<TreeNode> stack = new Stack<>();
-            stack.push(root);
-            while (!stack.isEmpty()) {
-                TreeNode temp = stack.pop();
-                if (temp.right != null) {
-                    stack.push(temp.right);
+            TreeNode cur = root;
+            while (!stack.isEmpty() || cur != null) {
+                if (cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                } else {
+                    cur = stack.pop();
+                    allVal.add(cur.val);
+                    cur = cur.right;
                 }
-                if (temp.left != null) {
-                    stack.push(temp.left);
-                }
-                allVal.add(temp.val);
             }
         }
 
-        private void getPreOrder1(TreeNode root, List<Integer> allVal) {
+        private void getInOrder1(TreeNode root, List<Integer> allVal) {
             if (root == null) {
                 return;
             }
+            getInOrder1(root.left, allVal);
             allVal.add(root.val);
-            getPreOrder1(root.left, allVal);
-            getPreOrder1(root.right, allVal);
+            getInOrder1(root.right, allVal);
+
         }
+
+
     }
 
     class TreeNode {

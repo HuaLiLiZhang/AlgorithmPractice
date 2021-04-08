@@ -72,7 +72,15 @@ public class _450DeleteNodeInABst {
      */
     class Solution {
         /**
-         * @Description: 迭代版
+         * @Description: 迭代版, 重点是要有一个parent指针，记住等于key的前一个节点
+         * 「因为二叉搜索树添加节点只需要在叶子上添加就可以的，不涉及到结构的调整，而删除节点操作涉及到结构的调整」。
+         *
+         * 这里我们依然使用递归函数的返回值来完成把节点从二叉树中移除的操作。
+         *
+         * 「这里最关键的逻辑就是第五种情况（删除一个左右孩子都不为空的节点），这种情况一定要想清楚」。
+         *
+         * 而且就算想清楚了，对应的代码也未必可以写出来，所以「这道题目即考察思维逻辑，也考察代码能力」。
+         *
          * @Param: [root, key]
          */
         public TreeNode deleteNode2(TreeNode root, int key) {

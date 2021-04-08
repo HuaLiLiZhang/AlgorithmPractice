@@ -147,27 +147,6 @@ public class _669TrimABinarySearchTree {
             root.right = trimBST1(root.right, low, high);
             return root;
         }
-
-        private TreeNode deleteOneNode(TreeNode cur) {
-            if (cur == null) {
-                return cur;
-            }
-            if (cur.left != null && cur.right == null) {
-                cur = cur.left;
-            } else if (cur.left == null && cur.right != null) {
-                cur = cur.right;
-            } else if (cur.left == null && cur.right == null) {
-                cur = null;
-            } else {
-                TreeNode temp = cur.right;
-                while (temp.left != null) {
-                    temp = temp.left;
-                }
-                temp.left = cur.left;
-                cur = cur.right;
-            }
-            return cur;
-        }
     }
 
     class TreeNode {

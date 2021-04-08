@@ -78,7 +78,7 @@ public class _235LowestCommonAncestorOfABinarySearchTree {
                     return root;
                 }
             }
-            return root;
+            return root; //没找着，此时也是返回null,因为循环跳出条件是null
         }
 
         /**
@@ -86,9 +86,6 @@ public class _235LowestCommonAncestorOfABinarySearchTree {
          * @Param: [root, p, q]
          */
         public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
-            if (root == null) {
-                return null;
-            }
             if (p.val > q.val) {
                 TreeNode temp = p;
                 p = q;
@@ -98,14 +95,25 @@ public class _235LowestCommonAncestorOfABinarySearchTree {
         }
 
         private TreeNode findLowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            if (root == null) {
+                return null; //没找着返回Null
+            }
             if (root.val > p.val && root.val < q.val) {
-                return root;
+                return root; //找着了，不用往深的找、返回root
             }
             if (root.val < p.val) {
-                return findLowestCommonAncestor(root.right, p, q);
+                TreeNode right = findLowestCommonAncestor(root.right, p, q);
+                //如果right为空，说明在右边没找着，此时也不会在搜索左边，会直接到最后的返回root
+                if (right != null) {
+                    return right;
+                }
             }
             if (root.val > q.val) {
-                return findLowestCommonAncestor(root.left, p, q);
+                TreeNode left = findLowestCommonAncestor(root.left, p, q);
+                //如果left为空，说明在左边没找着，此时也不会在搜索右边，会直接到最后的返回root
+                if (left != null) {
+                    return left;
+                }
             }
             return root;
         }

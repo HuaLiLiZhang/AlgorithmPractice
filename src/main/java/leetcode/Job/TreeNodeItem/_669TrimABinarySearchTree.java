@@ -110,6 +110,9 @@ public class _669TrimABinarySearchTree {
             TreeNode cur = root;
             //修剪左子树,// 此时root已经在[L, R] 范围内，处理左孩子元素小于L的情况
             while (cur != null) {
+                //此时是一个循环，那么只要cur.left一直小于low，那么cur.left会持续更新，因为cur是不变的，一直更新直到cur.left在区间内，
+                // 然后在跟新cur, cur = cur.left
+                //因为cur.left小于low,说明cur.left.left都小于low，所以更新cur.left = cur.left.right
                 while (cur.left != null && cur.left.val < low) {
                     cur.left = cur.left.right;
                 }
@@ -118,6 +121,9 @@ public class _669TrimABinarySearchTree {
             //修剪右子树 // 此时root已经在[L, R] 范围内，处理右孩子大于R的情况
             cur = root;
             while (cur != null) {
+                //此时是一个循环，那么只要cur.right一直大于high，那么cur.right会持续更新，因为cur是不变的，一直更新直到cur.rightt在区间内，
+                // 然后在跟新cur, cur = cur.right
+                //因为cur.right大于high,说明cur.right.right都大于high，所以更新cur.right = cur.right.left
                 while (cur.right != null && cur.right.val > high) {
                     cur.right = cur.right.left;
                 }

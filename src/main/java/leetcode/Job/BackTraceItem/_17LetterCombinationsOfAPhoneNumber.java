@@ -97,6 +97,8 @@ public class _17LetterCombinationsOfAPhoneNumber {
             //因为是给与数字的所有字母组合，所以要得到所有的长度为digits.length的结果集，所有字母串的长度都等于digits.lengt
             //所有要从0遍历到digits.lengt，即得到一种结果，然后循环每个数字的可能对应的字母，则得到所有的结果集
             char character = digits.charAt(startIndexOfDig);
+            //避免出现用户输入1*#这样的情况，出现字符转Integer失败以及不存在对应字母的情况，这里map中存key为Character,value等于string的就不会出现前面的问题
+            //因为1没有对应的字母，直接返回空，因为字母*#都是字符，在map中没有查找到，那么也是返回空，不会出现转为integer失败的情况
             String condinate = phoneMap.get(character);
             for (int j = 0; j < condinate.length(); j++) {
                 oneCombination.append(condinate.charAt(j));

@@ -65,7 +65,8 @@ public class _216CombinationSumIii {
             }
 
 
-            for (int i = start; i <= 9; i++) {
+            for (int i = start; i <= 9; i++) { //这里也可以优化一下：如果剩下的元素不够组成K个数了，那么不需要搜索了。
+                // for(int i = start; i <= 9 - (k -oneChoice.size()) + 1; i++)
                 oneChoice.add(i);
                 getCombinationSum(k, n, i + 1, sum + i, result, oneChoice);
                 oneChoice.remove(oneChoice.size() - 1);

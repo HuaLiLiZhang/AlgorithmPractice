@@ -57,7 +57,8 @@ public class _491IncreasingSubsequences {
             if (startIndex >= nums.length) {
                 return;
             }
-            //利用集合判断当前层的元素是否已经被使用。或者直接使用数组，因为元素值的大小范围为[-100, 100]
+            //利用集合判断当前层的元素是否已经被使用。
+            // 或者直接使用数组，因为元素值的大小范围为[-100, 100]
             //Set<Integer> set = new HashSet<>();
             boolean[] used = new boolean[201];
             for (int i = startIndex; i < nums.length; i++) {

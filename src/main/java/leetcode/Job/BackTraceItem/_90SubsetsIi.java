@@ -43,6 +43,8 @@ import java.util.List;
 public class _90SubsetsIi {
     public static void main(String[] args) {
         Solution solution = new _90SubsetsIi().new Solution();
+        int[] nums = {1, 2, 2};
+        System.out.println(solution.subsetsWithDup(nums));
     }
 
     /**
@@ -55,6 +57,7 @@ public class _90SubsetsIi {
             if (nums == null || nums.length <= 0) {
                 return result;
             }
+            //子集要排序的原因是，集合是没有顺序的，相同的元素不同的顺序视为同一个子集
             Arrays.sort(nums);
             getAllSubSetsWithDup(nums, 0, new ArrayList<>(), result);
             return result;

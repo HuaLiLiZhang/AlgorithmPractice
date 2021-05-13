@@ -54,7 +54,7 @@ public class _47PermutationsIi {
                 return result;
             }
             Arrays.sort(nums);
-            getAllPermutation(nums, new ArrayList<Integer>(), result, new HashSet<>(), new boolean[nums.length]);
+            getAllPermutation(nums, new ArrayList<Integer>(), result, new boolean[nums.length]);
             return result;
         }
 
@@ -64,7 +64,7 @@ public class _47PermutationsIi {
          * @Param: [nums, subPermutation, result, used]
          */
         private void getAllPermutation(int[] nums, ArrayList<Integer> subPermutation,
-                                       List<List<Integer>> result, Set<Integer> isContained, boolean[] isUsed) {
+                                       List<List<Integer>> result, boolean[] isUsed) {
             if (subPermutation.size() == nums.length) {
                 result.add(new ArrayList<>(subPermutation));
                 return;
@@ -79,11 +79,9 @@ public class _47PermutationsIi {
                     continue;
                 }
                 subPermutation.add(nums[i]);
-                isContained.add(nums[i]);
                 isUsed[i] = true;
-                getAllPermutation(nums, subPermutation, result, isContained, isUsed);
+                getAllPermutation(nums, subPermutation, result, isUsed);
                 subPermutation.remove(subPermutation.size() - 1);
-                isContained.remove(nums[i]);
                 isUsed[i] = false;
             }
         }

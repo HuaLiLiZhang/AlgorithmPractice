@@ -46,6 +46,7 @@ import java.util.List;
 public class _51NQueens {
     public static void main(String[] args) {
         Solution solution = new _51NQueens().new Solution();
+        System.out.println(solution.solveNQueens(4));
     }
 
     /**
@@ -70,6 +71,10 @@ public class _51NQueens {
         }
 
 
+        /**
+        * @Description: 找到n皇后的所有返回结果，那么不需要返回值的 ，因为符合一种情况就加入结果集
+        * @Param: [n, row, chessboard]
+        */
         public void backTrack(int n, int row, char[][] chessboard) {
             if (row == n) {
                 res.add(Array2List(chessboard));

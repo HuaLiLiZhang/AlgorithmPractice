@@ -49,6 +49,11 @@ public class _491IncreasingSubsequences {
             return result;
         }
 
+        /**
+         * @Description: 因为是子序列，所以不能排序，所以需要用used数组判断同一树层的元素是否已经被使用过，所以是在递归的内部初始化used数组
+         * boolean[] used = new boolean[201];表示同一层。
+         * @Param: [nums, startIndex, result, subSequence]
+         */
         private void getAllSubIncressSequence(int[] nums, int startIndex, List<List<Integer>> result,
                                               ArrayList<Integer> subSequence) {
             if (subSequence.size() >= 2) {

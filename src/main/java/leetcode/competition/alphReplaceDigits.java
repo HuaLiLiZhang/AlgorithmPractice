@@ -3,9 +3,9 @@ package leetcode.competition;
 /**
  * @author: Created by zhanghl
  */
-public class Main {
+public class alphReplaceDigits {
     public static void main(String[] args) {
-        System.out.println(new Main().replaceDigits("a1c1e1"));
+        System.out.println(new alphReplaceDigits().replaceDigits("a1c1e1"));
     }
 
     public String replaceDigits(String s) {

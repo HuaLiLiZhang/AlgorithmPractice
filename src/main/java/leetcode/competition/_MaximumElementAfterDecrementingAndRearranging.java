@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 
 
-public class Main1 {
+public class _MaximumElementAfterDecrementingAndRearranging {
     /**
      * @Description: 5732. 减小和重新排列数组后的最大元素 显示英文描述
      * 通过的用户数1428
@@ -52,11 +52,29 @@ public class Main1 {
      * 解释：数组已经满足所有条件，最大元素为 5 。
      * @Param: [arr]
      */
-    /*public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
+    public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;
         }
         Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 0) {
+                arr[0] = 1;
+                continue;
+            }
+            if (arr[i] > arr[i - 1] + 1) {
+                arr[i] = arr[i - 1] + 1;
+            }
+        }
+        return arr[arr.length - 1];
+    }
 
-    }*/
+    public static void main(String[] args) {
+        int[] num1 = {2, 2, 1, 2, 1};
+        System.out.println(new _MaximumElementAfterDecrementingAndRearranging().maximumElementAfterDecrementingAndRearranging(num1));
+        int[] num2 = {100,1,1000};
+        System.out.println(new _MaximumElementAfterDecrementingAndRearranging().maximumElementAfterDecrementingAndRearranging(num2));
+        int[] num3 = {1,2,3,4,5};
+        System.out.println(new _MaximumElementAfterDecrementingAndRearranging().maximumElementAfterDecrementingAndRearranging(num3));
+    }
 }

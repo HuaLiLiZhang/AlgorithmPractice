@@ -39,7 +39,10 @@ package leetcode.competition;
  *
  * 1 <= nums.length <= 105
  * 1 <= nums[i] <= 107 
-* @Param: 
+* @Param:
 */ 
-public class MaxArr {
+public class SubArrMaxSumMinProduct {
+    /*public int maxSumMinProduct(int[] nums) {
+
+    }*/
 }

@@ -5,6 +5,7 @@ import leetcode.ListNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -12,65 +13,6 @@ import java.util.PriorityQueue;
  * @author: Created by zhanghl
  */
 public class AllMeetAlgorithm {
-    public static void main(String[] args) {
-        /*String[] str = {"a", "b", "c", "b", "a", "a", "c"};
-        String[][] result = getTopNStr(str, 2);
-        System.out.println(result);*/
-        /*ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = null;*/
-       /* ListNode newHead = reverseNode(head);
-        while (newHead != null) {
-            System.out.println(newHead.val);
-            newHead = newHead.next;
-        }*/
-        /*ListNode newHeadEnd = kGroupReverse(head, 2);
-        while (newHeadEnd != null) {
-            System.out.println(newHeadEnd.val);
-            newHeadEnd = newHeadEnd.next;
-        }*/
-
-        /*int[] arr = {2, 1, 0, 3};
-        System.out.println(isJumpEnding(arr));
-        int[] arr1 = {2, 2, 0, 3};
-        System.out.println(isJumpEnding(arr1));
-        int[] arr2 = {2, 2, 0, 1, 2, 0, 1};
-        System.out.println(isJumpEnding(arr2));
-        int[] arr3 = {5, 4, 3, 2, 1, 0, 3};
-        System.out.println(isJumpEnding(arr3));
-        int[] arr4 = {5, 2, 1};
-        System.out.println(isJumpEnding(arr4));*/
-
-        /*int[] arr = {2, 3, 0, 0, 0, 2, 3, 0, 0, 2, 3, 0, 0};
-        int[] newArr = moveMoreZeroAndFillEnd(arr);
-        CommonFunction.printArr(newArr);
-        int[] arr1 = {0, 0, 0, 2, 3, 0, 0, 0, 0};
-        newArr = moveMoreZeroAndFillEnd(arr1);
-        CommonFunction.printArr(newArr);
-        int[] arr2 = {0, 0, 0, 2, 0, 0, 0, 0};
-        newArr = moveMoreZeroAndFillEnd(arr2);
-        CommonFunction.printArr(newArr);
-        int[] arr3 = {0, 0, 0, 2};
-        newArr = moveMoreZeroAndFillEnd(arr3);
-        CommonFunction.printArr(newArr);
-        int[] arr4 = {2, 0, 0, 0, 0};
-        newArr = moveMoreZeroAndFillEnd(arr4);
-        CommonFunction.printArr(newArr);
-        int[] arr5 = {2, 0, 3, 0, 4, 0};
-        newArr = moveMoreZeroAndFillEnd(arr5);
-        CommonFunction.printArr(newArr);*/
-
-        /*String str = "";
-        System.out.println(getNum(str));
-        str = "jbpnbwwd";
-        System.out.println(getNum(str));
-        str = "bbbbbb";
-        System.out.println(getNum(str));*/
-
-
-    }
 
     public static String[][] getTopNStr(String[] strs, int k) {
         if (strs == null || strs.length <= 0) {
@@ -193,10 +135,6 @@ public class AllMeetAlgorithm {
     }
 
 
-   /* public static int getIslandNum(char[][] island) {
-
-    }*/
-
     public static int maxProfit(int[] price) {
         if (price == null || price.length <= 1) {
             return 0;
@@ -226,6 +164,100 @@ public class AllMeetAlgorithm {
         return res;
     }
 
+   /* public static int getIslandNum(char[][] island) {
 
+    }*/
+
+    public static List<List<Integer>> getJumpCombation(int n, int a, int b) {
+        if (n <= 0) {
+            return null;
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        getAllCombation(n, a, b, new ArrayList<>(), result);
+        return result;
+    }
+
+    private static void getAllCombation(int n, int a, int b, ArrayList<Integer> oneConba, List<List<Integer>> result) {
+        if (n < 0) {
+            return;
+        }
+        if (n == 0) {
+            result.add(new ArrayList<>(oneConba));
+            return;
+        }
+        oneConba.add(a);
+        getAllCombation(n - a, a, b, oneConba, result);
+        oneConba.remove(oneConba.size() - 1);
+        oneConba.add(b);
+        getAllCombation(n - b, a, b, oneConba, result);
+        oneConba.remove(oneConba.size() - 1);
+    }
+
+    public static void main(String[] args) {
+        List<List<Integer>> jumpCombation = getJumpCombation(22, 1, 2);
+        System.out.println(jumpCombation.size());
+        /*jumpCombation.stream().forEach(list -> {
+            list.stream().forEach(c -> System.out.print(c + " "));
+            System.out.println();
+        });*/
+
+        /*String[] str = {"a", "b", "c", "b", "a", "a", "c"};
+        String[][] result = getTopNStr(str, 2);
+        System.out.println(result);*/
+        /*ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = null;*/
+       /* ListNode newHead = reverseNode(head);
+        while (newHead != null) {
+            System.out.println(newHead.val);
+            newHead = newHead.next;
+        }*/
+        /*ListNode newHeadEnd = kGroupReverse(head, 2);
+        while (newHeadEnd != null) {
+            System.out.println(newHeadEnd.val);
+            newHeadEnd = newHeadEnd.next;
+        }*/
+
+        /*int[] arr = {2, 1, 0, 3};
+        System.out.println(isJumpEnding(arr));
+        int[] arr1 = {2, 2, 0, 3};
+        System.out.println(isJumpEnding(arr1));
+        int[] arr2 = {2, 2, 0, 1, 2, 0, 1};
+        System.out.println(isJumpEnding(arr2));
+        int[] arr3 = {5, 4, 3, 2, 1, 0, 3};
+        System.out.println(isJumpEnding(arr3));
+        int[] arr4 = {5, 2, 1};
+        System.out.println(isJumpEnding(arr4));*/
+
+        /*int[] arr = {2, 3, 0, 0, 0, 2, 3, 0, 0, 2, 3, 0, 0};
+        int[] newArr = moveMoreZeroAndFillEnd(arr);
+        CommonFunction.printArr(newArr);
+        int[] arr1 = {0, 0, 0, 2, 3, 0, 0, 0, 0};
+        newArr = moveMoreZeroAndFillEnd(arr1);
+        CommonFunction.printArr(newArr);
+        int[] arr2 = {0, 0, 0, 2, 0, 0, 0, 0};
+        newArr = moveMoreZeroAndFillEnd(arr2);
+        CommonFunction.printArr(newArr);
+        int[] arr3 = {0, 0, 0, 2};
+        newArr = moveMoreZeroAndFillEnd(arr3);
+        CommonFunction.printArr(newArr);
+        int[] arr4 = {2, 0, 0, 0, 0};
+        newArr = moveMoreZeroAndFillEnd(arr4);
+        CommonFunction.printArr(newArr);
+        int[] arr5 = {2, 0, 3, 0, 4, 0};
+        newArr = moveMoreZeroAndFillEnd(arr5);
+        CommonFunction.printArr(newArr);*/
+
+        /*String str = "";
+        System.out.println(getNum(str));
+        str = "jbpnbwwd";
+        System.out.println(getNum(str));
+        str = "bbbbbb";
+        System.out.println(getNum(str));*/
+
+
+    }
 
 }

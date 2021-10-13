@@ -69,9 +69,12 @@ public class _62UniquePaths {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     if (i == 0 || j == 0) {
+                        //在最上方和最左方的一行和一列只有一种走法
                         dp[i][j] = 1;
                         continue;
                     }
+                    //其他的情况，某个位置的路径等于他上方的所以可能路径，往下走一格
+                    //                        和他左方的所有可能路径，往前走一格。
                     dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
                 }
             }

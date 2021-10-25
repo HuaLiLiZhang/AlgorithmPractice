@@ -23,6 +23,7 @@ public class _01MaxValueToWeight {
         int[] value = {15, 20, 30};
         int W = 4;
         System.out.println(new _01MaxValueToWeight().getMaxValueToW(weight, value, W));
+        System.out.println(new _01MaxValueToWeight().getMaxValueToW1(weight, value, W));
     }
 
     public int getMaxValueToW(int[] weight, int[] value, int W) {
@@ -52,4 +53,42 @@ public class _01MaxValueToWeight {
         return dp[num][W];
     }
 
+    //当然为了节省空间，也可以用一维滚动数组
+    //其实可以发现如果把dp[i - 1]那一层拷贝到dp[i]上，
+    // 表达式完全可以是：dp[i][j] = max(dp[i][j], dp[i][j - weight[i]] + value[i]);
+    //
+    //与其把dp[i - 1]这一层拷贝到dp[i]上，不如只用一个一维数组了，
+    // 只用dp[j]（一维数组，也可以理解是一个滚动数组）。
+
+    private int getMaxValueToW1(int[] weight, int[] value, int W) {
+        if (W <= 0) {
+            return 0;
+        }
+        int len = weight.length;
+        int[] dp = new int[W + 1];
+        for (int i = 0; i < len; i++) {
+            //背包顺序必须是倒序
+            //这里大家发现和二维dp的写法中，遍历背包的顺序是不一样的！
+            //
+            //二维dp遍历的时候，背包容量是从小到大，而一维dp遍历的时候，背包是从大到小。
+            //
+            //为什么呢？
+            //
+            //倒叙遍历是为了保证物品i只被放入一次！。但如果一旦正序遍历了，那么物品0就会被重复加入多次！
+            //
+            //举一个例子：物品0的重量weight[0] = 1，价值value[0] = 15
+            //
+            //如果正序遍历
+            //
+            //dp[1] = dp[1 - weight[0]] + value[0] = 15
+            //
+            //dp[2] = dp[2 - weight[0]] + value[0] = 30
+            //
+            //此时dp[2]就已经是30了，意味着物品0，被放入了两次，所以不能正序遍历。
+            for (int j = W; j >= weight[i]; j--) {
+                dp[j] = Math.max(dp[j - weight[i]] + value[i], dp[j]);
+            }
+        }
+        return dp[W];
+    }
 }

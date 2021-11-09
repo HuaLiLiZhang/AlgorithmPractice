@@ -4,7 +4,7 @@ package leetcode.Job;
  * @author: Created by zhanghl
  */
 public class TreeNode {
-    int val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
 

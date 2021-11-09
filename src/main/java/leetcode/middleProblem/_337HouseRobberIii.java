@@ -85,7 +85,7 @@ public class _337HouseRobberIii {
             //不偷根节点
             int val1 = Math.max(leftRob[1], leftRob[0]) + Math.max(rightRob[0], rightRob[1]);
             //偷根节点
-            int val2 = root.val + robDigui(root.left)[0] + robDigui(root.right)[0];
+            int val2 = root.val + leftRob[0] + rightRob[0];
             return new int[]{val1, val2};
         }
 

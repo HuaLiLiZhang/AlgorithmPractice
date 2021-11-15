@@ -7,6 +7,19 @@
     <groupId>com.edu.cn</groupId>
     <artifactId>AlgorithmPractice</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+            <id>nexus3</id>
+            <url>https://nexus3.corp.youdao.com/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>ivy</id>
+            <url>http://fountain.rd.netease.com/share/ivy/</url>
+        </repository>
+    </repositories>
+
+
     <build>
         <plugins>
             <plugin>

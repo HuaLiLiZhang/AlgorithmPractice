@@ -6,7 +6,7 @@ import jdk.internal.util.Preconditions;
 import java.util.Objects;
 
 /**
- * TODO 类的实现描述
+ * 翻转字符串前缀
  *
  * @author zhanghuali
  * @version 1.0

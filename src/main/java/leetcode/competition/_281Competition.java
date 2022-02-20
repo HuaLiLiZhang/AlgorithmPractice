@@ -19,6 +19,14 @@ import java.util.Map;
 public class _281Competition {
 
     public static void main(String[] args) {
+        //[1,2,3,4,5]
+        //2
+        //[1,2,3,4]
+        //5
+        int[] nums = {1,2,3,4,5};
+        int[] nums1 = {1,2,3,4};
+        System.out.println(new _6015CountPairCanByDivision().coutPairs(nums, 2));
+        System.out.println(new _6015CountPairCanByDivision().coutPairs(nums1, 5));
         System.out.println(new _6014ConstructRepeatLimitedString().repeatLimitedString("cczazcc", 3));
         System.out.println(new _6014ConstructRepeatLimitedString().repeatLimitedString("aababab", 2));
 
@@ -182,7 +190,7 @@ public class _281Competition {
                             if (countArr[j] == 0) {
                                 j--;
                             } else {
-                                news.append((char)('a' + j));
+                                news.append((char) ('a' + j));
                                 countArr[j]--;
                                 isHave = true;
                                 break;
@@ -201,6 +209,116 @@ public class _281Competition {
 
             }
             return news.toString();
+        }
+    }
+
+    /**
+     * 给你一个下标从 0 开始、长度为 n 的整数数组 nums 和一个整数 k ，返回满足下述条件的下标对 (i, j) 的数目：
+     * <p>
+     * 0 <= i < j <= n - 1 且
+     * nums[i] * nums[j] 能被 k 整除。
+     * <p>
+     * <p>
+     * 示例 1：
+     * <p>
+     * 输入：nums = [1,2,3,4,5], k = 2
+     * 输出：7
+     * 解释：
+     * 共有 7 对下标的对应积可以被 2 整除：
+     * (0, 1)、(0, 3)、(1, 2)、(1, 3)、(1, 4)、(2, 3) 和 (3, 4)
+     * 它们的积分别是 2、4、6、8、10、12 和 20 。
+     * 其他下标对，例如 (0, 2) 和 (2, 4) 的乘积分别是 3 和 15 ，都无法被 2 整除。
+     * 示例 2：
+     * <p>
+     * 输入：nums = [1,2,3,4], k = 5
+     * 输出：0
+     * 解释：不存在对应积可以被 5 整除的下标对。
+     * <p>
+     * <p>
+     * 提示：
+     * <p>
+     * 1 <= nums.length <= 105
+     * 1 <= nums[i], k <= 105
+     *
+     * @param
+     * @author zhanghuali
+     * @return
+     * @CreateTime: 2022/02/20 16:30:39
+     * @Description:
+     **/
+    static class _6015CountPairCanByDivision {
+        // 统计每个数字和k的最大公约数，只要最大公约数之乘积可以被k整除就行
+        public static long coutPairs(int[] nums, int k) {
+            int length = nums.length;
+            int cnt = 0;
+            Map<Integer, Integer> gcdCntMap = new HashMap<>();
+            for (int num : nums) {
+                if (num % k == 0) {
+                    cnt++;
+                } else {
+                    // 最大公因数
+                    int gcd = gcd(k, num);
+                    gcdCntMap.put(gcd, gcdCntMap.getOrDefault(gcd, 0) + 1);
+                }
+            }
+            // 本身就能整除的，配上任何不能整除的数数都能整除
+            long ans = (long) cnt * (length - cnt);
+            // 本身能整除的配上能整除的
+            ans += (long) cnt * (cnt - 1) >> 1;
+            // 凑不能整除的，凑因子相乘如果能整除
+            long tmp = 0;
+            for (Integer key : gcdCntMap.keySet()) {
+                if (key == 1) {
+                    continue;
+                }
+                Integer count = gcdCntMap.get(key);
+                for (Integer nextKey : gcdCntMap.keySet()) {
+                    if ((key * nextKey) % k == 0) {
+                        if (key.equals(nextKey)) {
+                            // 自己乘自己，会算两遍
+                            tmp += (long) count * (count - 1);
+                        } else {
+                            // 有可能i*j 或者j*i会计算两遍
+                            tmp += (long) count * gcdCntMap.get(nextKey);
+                        }
+                    }
+                }
+            }
+            return ans + (tmp >> 1);
+        }
+        // 求最大公因数
+        private static int gcd(int k, int j) {
+            return j != 0 ? gcd(j, k % j) : k;
+        }
+
+        public long coutPairs_超时(int[] nums, int k) {
+            if (nums == null || nums.length <= 1) {
+                return 0;
+            }
+            int count = 0;
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int i = 0; i < nums.length - 1; i++) {
+                int x = nums[i];
+                if (map.containsKey(x) || x % k == 0) {
+                    map.put(x, 1);
+                    count += nums.length - i - 1;
+                    continue;
+                }
+                for (int j = i + 1; j < nums.length; j++) {
+                    int y = nums[j];
+                    if (map.containsKey(y) || y % k == 0) {
+                        count++;
+                        map.put(y, 1);
+                        continue;
+                    }
+                    int mu = x * y;
+                    if (map.containsKey(mu) || mu % k == 0) {
+                        map.put(mu, 1);
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 

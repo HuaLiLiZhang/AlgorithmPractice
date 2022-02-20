@@ -29,16 +29,16 @@ package leetcode.hot100;
  * @CreateTime: 2022/02/02 14:24:21
  * @Description:
  */
-public class SearchRotateSortArr {
+public class _33SearchRotateSortArr {
     public static void main(String[] args) {
         int[] nums = {4, 5, 6, 7, 0, 1, 2};
         int target = 0;
-        System.out.println(new SearchRotateSortArr().search(nums, target));
-        System.out.println(new SearchRotateSortArr().search(nums, 3));
+        System.out.println(new _33SearchRotateSortArr().search(nums, target));
+        System.out.println(new _33SearchRotateSortArr().search(nums, 3));
         int[] nums1 = {1};
-        System.out.println(new SearchRotateSortArr().search(nums1, 3));
+        System.out.println(new _33SearchRotateSortArr().search(nums1, 3));
         int[] nums2 = {1, 3};
-        System.out.println(new SearchRotateSortArr().search(nums2, 3));
+        System.out.println(new _33SearchRotateSortArr().search(nums2, 3));
     }
 
     public int search(int[] nums, int target) {
